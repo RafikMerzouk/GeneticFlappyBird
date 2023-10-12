@@ -1,4 +1,6 @@
 import numpy as np
+import pickle
+import os
 
 def sigmoid(x):
     return 1 / (1 + np.exp(-x))
@@ -38,3 +40,25 @@ class NeuralNetwork:
             for i in range(len(bias)):
                 if np.random.rand() < mutation_rate:
                     bias[i] += np.random.randn() * 0.5
+
+    def save(self, filename, generation):
+        data = {
+            'weights_input_to_hidden': self.weights_input_to_hidden,
+            'weights_hidden_to_output': self.weights_hidden_to_output,
+            'bias_hidden': self.bias_hidden,
+            'bias_output': self.bias_output,
+            'generation': generation
+        }
+        with open(filename, 'wb') as file:
+            pickle.dump(data, file)
+
+    def load(self, filename, load_model=True):
+        if load_model and os.path.exists(filename):
+            with open(filename, 'rb') as file:
+                data = pickle.load(file)
+                self.weights_input_to_hidden = data['weights_input_to_hidden']
+                self.weights_hidden_to_output = data['weights_hidden_to_output']
+                self.bias_hidden = data['bias_hidden']
+                self.bias_output = data['bias_output']
+                return data.get('generation', 0)
+        return 0
