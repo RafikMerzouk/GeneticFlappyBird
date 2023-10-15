@@ -16,8 +16,8 @@ def initialize_game(WIDTH, HEIGHT):
     clock = pygame.time.Clock()
     return window, clock
 
-def create_new_population(POPULATION_SIZE, WIDTH, HEIGHT):
-    return [Bird(WIDTH // 4, HEIGHT // 2, HEIGHT) for _ in range(POPULATION_SIZE)]
+def create_new_population(POPULATION_SIZE, WIDTH, HEIGHT, hidden_layer_size):
+    return [Bird(WIDTH // 4, HEIGHT // 2, HEIGHT, hidden_layer_size) for _ in range(POPULATION_SIZE)]
 
 def handle_events():
     for event in pygame.event.get():

@@ -3,7 +3,7 @@ from neural_network import NeuralNetwork
 
 
 class Bird:
-    def __init__(self, x, y, HEIGHT):
+    def __init__(self, x, y, HEIGHT, hidden_layer_size):
         self.x = x
         self.y = y
         self.speed = 0
@@ -12,9 +12,10 @@ class Bird:
         self.image = pygame.image.load("bird.png")
         self.HEIGHT = HEIGHT
         self.score = 0
+        self.frame_survived = 0
 
         # Initialize the bird's brain
-        self.brain = NeuralNetwork(input_size=4, hidden_size=8, output_size=1)
+        self.brain = NeuralNetwork(input_size=4, hidden_size=hidden_layer_size, output_size=1)
 
     def update_position(self):
         self.speed += self.gravity

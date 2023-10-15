@@ -20,8 +20,8 @@ listener.start()
 # Paramètres du jeu
 WIDTH = 480
 HEIGHT = 640
-POPULATION_SIZE = 200
-VISUALIZE = True
+POPULATION_SIZE = 250
+VISUALIZE = False
 
 def main():
     try:
@@ -36,7 +36,7 @@ def main():
     if VISUALIZE :
         window, clock = initialize_game(WIDTH, HEIGHT)
         font = pygame.font.Font(None, 36)
-    birds = create_new_population(POPULATION_SIZE, WIDTH, HEIGHT)
+    birds = create_new_population(POPULATION_SIZE, WIDTH, HEIGHT, 5)
     
     dead_birds = []
     pipes = [Pipe(WIDTH, HEIGHT)]
@@ -51,7 +51,7 @@ def main():
         birds, pipes, dead_birds = update_game_state(birds, pipes, dead_birds, WIDTH, HEIGHT)
 
         if len(birds) == 0 :
-            birds = generate_new_population(dead_birds, POPULATION_SIZE, WIDTH, HEIGHT)
+            birds = generate_new_population(dead_birds, POPULATION_SIZE, WIDTH, HEIGHT, 0.1, 11)
             if not VISUALIZE :
                 print(f'generation number {generation}, max score : {max(dead_birds, key=lambda bird: bird.score).score}')
             generation_info['generation'].append(generation)

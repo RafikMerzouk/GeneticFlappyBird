@@ -34,12 +34,30 @@ class NeuralNetwork:
             for i in range(weight_matrix.shape[0]):
                 for j in range(weight_matrix.shape[1]):
                     if np.random.rand() < mutation_rate:
-                        weight_matrix[i][j] += np.random.randn() * 0.5
+                        mutation_type = np.random.choice(['gaussian', 'uniform', 'reset'])
+                        
+                        if mutation_type == 'gaussian':
+                            weight_matrix[i][j] += np.random.randn() * 0.5
+                        
+                        elif mutation_type == 'uniform':
+                            weight_matrix[i][j] += np.random.uniform(-0.5, 0.5)
+                        
+                        elif mutation_type == 'reset':
+                            weight_matrix[i][j] = np.random.randn()
 
         for bias in [self.bias_hidden, self.bias_output]:
             for i in range(len(bias)):
                 if np.random.rand() < mutation_rate:
-                    bias[i] += np.random.randn() * 0.5
+                    mutation_type = np.random.choice(['gaussian', 'uniform', 'reset'])
+                    
+                    if mutation_type == 'gaussian':
+                        bias[i] += np.random.randn() * 0.5
+                    
+                    elif mutation_type == 'uniform':
+                        bias[i] += np.random.uniform(-0.5, 0.5)
+                    
+                    elif mutation_type == 'reset':
+                        bias[i] = np.random.randn()
 
     def save(self, filename, generation):
         data = {
