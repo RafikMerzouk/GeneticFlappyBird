@@ -1,0 +1,8 @@
+numpy
+random
+pynput
+pickle
+matplotlib
+pygame
+multiprocessing
+scipy
