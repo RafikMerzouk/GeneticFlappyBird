@@ -60,9 +60,8 @@ def crossover(parent1, parent2, method):
 
     return child_brain
 
-def generate_new_population(birds, population_size, WIDTH, HEIGHT, mutation_rate, hidden_layer_size, elitism_rate=0.1, method="uniform"):
+def generate_new_population(birds, population_size, WIDTH, HEIGHT, mutation_rate, hidden_layer_size, method="uniform", elitism_rate=0.1):
     new_birds = []
-    
     num_elites = int(elitism_rate * population_size)
     elites = sorted(birds, key=lambda bird: bird.score, reverse=True)[:num_elites]
     

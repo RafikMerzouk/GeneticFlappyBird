@@ -21,7 +21,7 @@ listener.start()
 WIDTH = 480
 HEIGHT = 640
 POPULATION_SIZE = 250
-VISUALIZE = False
+VISUALIZE = True
 
 def main():
     try:
